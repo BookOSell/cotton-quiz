@@ -57,38 +57,47 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
+        // Mouse interaction
+        let mouse = { x: null, y: null, radius: 100 };
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
         // Particle Class
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5; // Small premium dust particles
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * -0.5 - 0.1; // Float upwards
-                // Premium Rose Gold, Pink, and Gold dust colors
-                const colors = ['rgba(212, 128, 146, ', 'rgba(255, 182, 193, ', 'rgba(214, 175, 55, '];
+                this.size = Math.random() * 2 + 1; // Slightly larger for constellation
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.speedY = Math.random() * 0.6 - 0.3;
+                // Turquoise Theme Colors
+                const colors = ['rgba(0, 128, 128, ', 'rgba(0, 206, 209, ', 'rgba(128, 222, 234, '];
                 this.colorBase = colors[Math.floor(Math.random() * colors.length)];
-                this.opacity = Math.random() * 0.5 + 0.15;
-                this.fadeDirection = Math.random() > 0.5 ? 0.005 : -0.005;
+                this.opacity = Math.random() * 0.6 + 0.2;
             }
 
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Opacity pulse
-                this.opacity += this.fadeDirection;
-                if (this.opacity > 0.7 || this.opacity < 0.1) {
-                    this.fadeDirection = -this.fadeDirection;
-                }
+                // Bounce off edges
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
 
-                // Wrap around edges
-                if (this.y < 0) {
-                    this.y = canvas.height;
-                    this.x = Math.random() * canvas.width;
-                }
-                if (this.x < 0 || this.x > canvas.width) {
-                    this.x = Math.random() * canvas.width;
+                // Mouse interaction (repel)
+                if (mouse.x && mouse.y) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= forceDirectionX * force * 3;
+                        this.y -= forceDirectionY * force * 3;
+                    }
                 }
             }
 
@@ -101,9 +110,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Initialize particles
-        const particleCount = Math.min(60, Math.floor((canvas.width * canvas.height) / 20000));
+        const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 12000));
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
+        }
+
+        // Connect particles with lines
+        function connect() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x))
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        let opacityValue = 1 - (distance / 15000);
+                        if(opacityValue > 0) {
+                            ctx.strokeStyle = 'rgba(0, 128, 128, ' + opacityValue * 0.3 + ')';
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[a].x, particles[a].y);
+                            ctx.lineTo(particles[b].x, particles[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
         }
 
         // Animation Loop
@@ -113,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.update();
                 p.draw();
             });
+            connect();
             requestAnimationFrame(animateParticles);
         }
         animateParticles();

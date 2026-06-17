@@ -119,43 +119,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       RELATIVE SEEDED COUNTDOWN TIMER
+       FIXED TARGET COUNTDOWN TIMER
+       Fixed target: September 7, 2026 at 09:00 AM IST (UTC+5:30)
+       09:00 AM IST = 03:30 AM UTC
        ========================================================================== */
-    // Set target date to 24 days, 18 hours, and 45 minutes in the future from now
-    // This ensures that whenever a reviewer loads the landing page, they see an active, running clock.
-    const countdownTarget = new Date().getTime() + (24 * 24 * 60 * 60 * 1000) + (18 * 60 * 60 * 1000) + (45 * 60 * 1000);
+    // Fixed event date — MCB Debate Competition Day
+    const countdownTarget = new Date('2026-09-07T03:30:00Z').getTime();
 
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
+    const daysEl    = document.getElementById('days');
+    const hoursEl   = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
     const secondsEl = document.getElementById('seconds');
 
+    // Helper: animate a flip effect whenever the value changes
+    function setWithFlip(el, newVal) {
+        if (!el) return;
+        const formatted = String(newVal).padStart(2, '0');
+        if (el.innerText !== formatted) {
+            el.classList.remove('tick-flip');
+            // Force reflow so animation re-triggers
+            void el.offsetWidth;
+            el.innerText = formatted;
+            el.classList.add('tick-flip');
+        }
+    }
+
     function updateCountdown() {
-        const now = new Date().getTime();
+        const now        = new Date().getTime();
         const difference = countdownTarget - now;
 
         if (difference <= 0) {
+            // Timer expired — show a completed state
             clearInterval(countdownInterval);
-            if (daysEl) daysEl.innerText = "00";
-            if (hoursEl) hoursEl.innerText = "00";
-            if (minutesEl) minutesEl.innerText = "00";
-            if (secondsEl) secondsEl.innerText = "00";
+            [daysEl, hoursEl, minutesEl, secondsEl].forEach(el => {
+                if (el) el.innerText = '00';
+            });
+            const countdownContainer = document.querySelector('.countdown-container');
+            if (countdownContainer) {
+                const labelEl = countdownContainer.querySelector('.countdown-label');
+                if (labelEl) labelEl.innerText = '🎉 THE FEST HAS BEGUN!';
+            }
             return;
         }
 
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        // Correct time unit calculations
+        const days    = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours   = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        if (daysEl) daysEl.innerText = String(days).padStart(2, '0');
-        if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
-        if (minutesEl) minutesEl.innerText = String(minutes).padStart(2, '0');
-        if (secondsEl) secondsEl.innerText = String(seconds).padStart(2, '0');
+        setWithFlip(daysEl,    days);
+        setWithFlip(hoursEl,   hours);
+        setWithFlip(minutesEl, minutes);
+        setWithFlip(secondsEl, seconds);
     }
 
     const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
+    updateCountdown(); // Run immediately so there's no 1s blank delay on load
 
     /* ==========================================================================
        SCROLL TO TRIGGER (HERO HIGHLIGHTS CLICK)

@@ -597,6 +597,18 @@ button, input, select, textarea {
     100% { opacity: 0; transform: translateY(12px); }
 }
 
+/* Countdown flip animation — triggers when digit changes */
+@keyframes tick-flip-anim {
+    0%   { transform: scaleY(1);    opacity: 1; }
+    30%  { transform: scaleY(0.6);  opacity: 0.5; }
+    60%  { transform: scaleY(1.08); opacity: 1; }
+    100% { transform: scaleY(1);    opacity: 1; }
+}
+.tick-flip {
+    display: inline-block;
+    animation: tick-flip-anim 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* ==========================================================================
    SECTION COMMON ELEMENTS
    ========================================================================== */
@@ -2039,4 +2051,331 @@ button, input, select, textarea {
         grid-template-columns: 1fr;
         gap: 0;
     }
+}
+
+/* ==========================================================================
+   SECTION DESCRIPTION TEXT
+   ========================================================================== */
+.section-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 15px auto 0 auto;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* ==========================================================================
+   EVENT OVERVIEW GRID
+   ========================================================================== */
+.event-overview-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: start;
+}
+.event-detail-card {
+    padding: 0;
+    overflow: hidden;
+}
+.event-objectives-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.objectives-heading {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+}
+.objectives-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.objective-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    font-size: 0.92rem;
+    color: var(--ivory);
+    line-height: 1.5;
+}
+.objective-item i {
+    color: var(--gold);
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+.highlights-mini-card { padding: 25px; }
+.highlights-mini-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.highlights-mini-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.highlights-mini-card li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--ivory);
+}
+.highlights-mini-card li i {
+    color: var(--gold);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   GUESTS SECTION
+   ========================================================================== */
+.guests-section {
+    background: linear-gradient(135deg, rgba(255, 209, 220, 0.15) 0%, transparent 70%);
+}
+.guests-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+}
+.guest-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px;
+    gap: 14px;
+    transition: var(--transition-smooth);
+}
+.guest-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 128, 146, 0.12);
+}
+.guest-photo-area {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--border-color);
+    position: relative;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+.guest-card:hover .guest-photo-area {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(212, 128, 146, 0.25);
+}
+.guest-photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--navy), rgba(212, 128, 146, 0.1));
+    color: var(--gold);
+}
+.guest-photo-placeholder i { width: 50px; height: 50px; opacity: 0.3; }
+.guest-photo-area img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+}
+.guest-info h3 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ivory);
+    margin-bottom: 5px;
+}
+.guest-title {
+    font-size: 0.75rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    display: block;
+}
+
+/* ==========================================================================
+   ORGANISING COMMITTEE
+   ========================================================================== */
+.committee-section {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.1) 0%, transparent 60%);
+}
+.committee-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    align-items: start;
+}
+.committee-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    gap: 14px;
+    transition: var(--transition-smooth);
+}
+.committee-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(212, 128, 146, 0.1);
+}
+.committee-lead-card {
+    border-color: var(--border-color-hover);
+    background: rgba(212, 128, 146, 0.04);
+}
+.committee-photo-area {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--border-color);
+    position: relative;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+.committee-card:hover .committee-photo-area { border-color: var(--gold); }
+.committee-photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--navy), rgba(212, 128, 146, 0.12));
+    color: var(--gold);
+}
+.committee-photo-placeholder i { width: 45px; height: 45px; opacity: 0.3; }
+.committee-photo-area img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+}
+.committee-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ivory);
+    margin-bottom: 5px;
+}
+.committee-role {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 8px;
+}
+.committee-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   SPONSORSHIP TIERS
+   ========================================================================== */
+.sponsorship-tiers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 70px;
+}
+.tier-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    transition: var(--transition-smooth);
+}
+.tier-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 128, 146, 0.12);
+}
+.tier-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 50px;
+    background: var(--gold);
+    color: #FFFFFF;
+}
+.badge-silver  { background: linear-gradient(135deg, #94a3b8, #64748b); }
+.badge-bronze  { background: linear-gradient(135deg, #b45309, #92400e); }
+.badge-inkind  { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+.tier-icon { width: 38px; height: 38px; color: var(--gold); }
+.tier-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ivory);
+    line-height: 1.3;
+}
+.tier-benefits {
+    list-style: none;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    margin: 5px 0 12px 0;
+}
+.tier-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--ivory);
+    line-height: 1.4;
+}
+.tier-benefits li i { color: var(--gold); width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; }
+.tier-card .btn { width: 100%; justify-content: center; font-size: 0.8rem; padding: 11px 18px; }
+.tier-title {
+    border-color: rgba(212, 128, 146, 0.4);
+    background: rgba(212, 128, 146, 0.04);
+}
+.current-sponsors { text-align: center; }
+.current-sponsors-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Responsive overrides for new sections */
+@media (max-width: 1024px) {
+    .event-overview-grid { grid-template-columns: 1fr; }
+    .guests-grid { grid-template-columns: repeat(3, 1fr); }
+    .committee-grid { grid-template-columns: 1fr 1fr; }
+    .sponsorship-tiers { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+    .guests-grid { grid-template-columns: 1fr 1fr; }
+    .committee-grid { grid-template-columns: 1fr 1fr; }
+    .committee-lead-card { grid-column: span 2; }
+    .sponsorship-tiers { grid-template-columns: 1fr; }
 }

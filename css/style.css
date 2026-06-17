@@ -2495,3 +2495,159 @@ button, input, select, textarea {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
+/* ==========================================================================
+   PRIZE POOL SECTION
+   ========================================================================== */
+.prize-section {
+    background: linear-gradient(135deg, rgba(0, 206, 209, 0.05) 0%, transparent 60%);
+    position: relative;
+    overflow: hidden;
+}
+
+.prize-hero-card {
+    text-align: center;
+    padding: 50px 30px;
+    margin-bottom: 40px;
+    position: relative;
+    border: 2px solid var(--gold);
+    box-shadow: 0 15px 50px rgba(0, 128, 128, 0.15);
+}
+
+.prize-glow-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 206, 209, 0.2) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.mega-trophy-icon {
+    width: 60px;
+    height: 60px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.prize-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.prize-hero-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--ivory);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.prize-amount {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    color: var(--gold);
+}
+
+.prize-amount .currency {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.prize-amount .amount {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    font-family: var(--font-heading);
+    text-shadow: 0 4px 15px rgba(0, 128, 128, 0.3);
+}
+
+.prize-amount .plus-goodies {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ivory);
+}
+
+.prize-tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.prize-tier {
+    text-align: center;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.tier-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.tier-icon-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 128, 128, 0.3);
+    animation: spin 10s linear infinite;
+}
+
+.tier-icon-wrapper i {
+    width: 30px;
+    height: 30px;
+}
+
+.gold-medal { background: linear-gradient(135deg, rgba(214, 175, 55, 0.1), rgba(214, 175, 55, 0.3)); color: #d6af37; border: 1px solid rgba(214, 175, 55, 0.5); }
+.silver-medal { background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(192, 192, 192, 0.3)); color: #c0c0c0; border: 1px solid rgba(192, 192, 192, 0.5); }
+.bronze-medal { background: linear-gradient(135deg, rgba(205, 127, 50, 0.1), rgba(205, 127, 50, 0.3)); color: #cd7f32; border: 1px solid rgba(205, 127, 50, 0.5); }
+
+.prize-tier h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--ivory);
+    font-weight: 700;
+}
+
+.prize-tier p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 1024px) {
+    .prize-amount .amount { font-size: 4rem; }
+    .prize-amount .currency { font-size: 2.5rem; }
+    .prize-amount .plus-goodies { font-size: 1.2rem; }
+    .prize-tiers-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    .prize-amount .amount { font-size: 3rem; }
+    .prize-amount .currency { font-size: 2rem; }
+    .prize-amount .plus-goodies { font-size: 1rem; }
+    .prize-amount { flex-direction: column; align-items: center; gap: 0; }
+    .prize-tiers-grid { grid-template-columns: 1fr; }
+}

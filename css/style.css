@@ -2,31 +2,31 @@
    DESIGN SYSTEM & VARIABLES
    ========================================================================== */
 :root {
-    /* Color Palette */
-    --bg-dark: #FFFFFF;
-    --bg-dark-rgb: 255, 255, 255;
-    --bg-darker: #FFF5F7; /* Ultra light baby pink */
-    --navy: #FFD1DC; /* Baby Pink */
-    --navy-rgb: 255, 209, 220;
-    --maroon: #FFB6C1; /* Soft Light Pink */
-    --maroon-rgb: 255, 182, 193;
-    --gold: #D48092; /* Rose Gold / Dusty Pink (for headings, highlights, borders) */
-    --gold-rgb: 212, 128, 146;
-    --gold-hover: #E595A6;
-    --gold-muted: #AA5B6C;
-    --ivory: #0F172A; /* Slate Dark for Main Text */
-    --text-muted: #475569; /* Slate Gray for muted text */
-    --border-color: rgba(212, 128, 146, 0.2);
-    --border-color-hover: rgba(212, 128, 146, 0.5);
-    
+    /* Color Palette — Turquoise / Teal Theme */
+    --bg-dark: #F0FAFA;              /* Very light aqua-white background */
+    --bg-dark-rgb: 240, 250, 250;
+    --bg-darker: #E0F7F7;            /* Soft teal-white for alternating sections */
+    --navy: #B2EBEB;                 /* Light turquoise (used as soft accent bg) */
+    --navy-rgb: 178, 235, 235;
+    --maroon: #80DEEA;               /* Bright aqua (used for soft highlights) */
+    --maroon-rgb: 128, 222, 234;
+    --gold: #008080;                 /* Deep teal — primary accent (headings, borders, highlights) */
+    --gold-rgb: 0, 128, 128;
+    --gold-hover: #00A3A3;           /* Slightly brighter teal on hover */
+    --gold-muted: #006666;           /* Dark teal for subdued accent */
+    --ivory: #0D2626;                /* Very dark teal-black for main text */
+    --text-muted: #3D6B6B;           /* Muted teal-gray for secondary text */
+    --border-color: rgba(0, 128, 128, 0.2);
+    --border-color-hover: rgba(0, 128, 128, 0.5);
+
     /* Layout Tokens */
-    --glass-bg: rgba(255, 255, 255, 0.75); /* Soft transparent white for cards */
+    --glass-bg: rgba(255, 255, 255, 0.78); /* Clean white glass for cards */
     --glass-blur: blur(12px);
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-fast: all 0.2s ease;
     --border-radius: 12px;
     --border-radius-lg: 20px;
-    
+
     /* Font Families */
     --font-heading: 'Cinzel', serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -141,7 +141,7 @@ button, input, select, textarea {
     left: 0;
     width: 100%;
     z-index: 100;
-    border-bottom: 1px solid rgba(212, 128, 146, 0.1);
+    border-bottom: 1px solid rgba(0, 128, 128, 0.1);
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(10px);
     transition: var(--transition-smooth);
@@ -474,11 +474,11 @@ button, input, select, textarea {
 .countdown-container {
     margin-bottom: 50px;
     background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(212, 128, 146, 0.25);
+    border: 1px solid rgba(0, 128, 128, 0.25);
     padding: 20px 40px;
     border-radius: 16px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(212, 128, 146, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 128, 128, 0.08);
 }
 .countdown-label {
     font-size: 0.75rem;
@@ -537,16 +537,16 @@ button, input, select, textarea {
     padding: 10px 20px;
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(212, 128, 146, 0.2);
+    border: 1px solid rgba(0, 128, 128, 0.2);
     cursor: pointer;
     transition: var(--transition-smooth);
-    box-shadow: 0 4px 15px rgba(212, 128, 146, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 128, 128, 0.05);
 }
 .highlight-item:hover {
     background: rgba(255, 209, 220, 0.25);
-    border-color: rgba(212, 128, 146, 0.5);
+    border-color: rgba(0, 128, 128, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(212, 128, 146, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 128, 128, 0.15);
 }
 .highlight-icon {
     color: var(--gold);
@@ -1043,7 +1043,7 @@ button, input, select, textarea {
     width: 20px;
     height: 20px;
     background: #FFFFFF;
-    border: 2px solid rgba(212, 128, 146, 0.3);
+    border: 2px solid rgba(0, 128, 128, 0.3);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1054,7 +1054,7 @@ button, input, select, textarea {
 .marker-dot {
     width: 8px;
     height: 8px;
-    background: rgba(212, 128, 146, 0.3);
+    background: rgba(0, 128, 128, 0.3);
     border-radius: 50%;
     transition: var(--transition-smooth);
 }
@@ -1491,7 +1491,7 @@ button, input, select, textarea {
     outline: none;
     border-color: var(--gold);
     background: #FFFFFF;
-    box-shadow: 0 0 10px rgba(212, 128, 146, 0.15);
+    box-shadow: 0 0 10px rgba(0, 128, 128, 0.15);
 }
 
 .contact-form-block textarea {
@@ -1523,7 +1523,7 @@ button, input, select, textarea {
    ========================================================================== */
 .main-footer {
     background: var(--bg-darker);
-    border-top: 1px solid rgba(212, 128, 146, 0.15);
+    border-top: 1px solid rgba(0, 128, 128, 0.15);
     padding: 80px 0 30px 0;
     z-index: 5;
     position: relative;
@@ -1673,7 +1673,7 @@ button, input, select, textarea {
     position: relative;
     padding: 45px;
     border-radius: var(--border-radius-lg);
-    box-shadow: 0 20px 60px rgba(212, 128, 146, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 128, 128, 0.15);
 }
 
 .modal-close-btn {
@@ -2161,7 +2161,7 @@ button, input, select, textarea {
 }
 .guest-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(212, 128, 146, 0.12);
+    box-shadow: 0 15px 40px rgba(0, 128, 128, 0.12);
 }
 .guest-photo-area {
     width: 110px;
@@ -2175,7 +2175,7 @@ button, input, select, textarea {
 }
 .guest-card:hover .guest-photo-area {
     border-color: var(--gold);
-    box-shadow: 0 0 20px rgba(212, 128, 146, 0.25);
+    box-shadow: 0 0 20px rgba(0, 128, 128, 0.25);
 }
 .guest-photo-placeholder {
     position: absolute;
@@ -2183,7 +2183,7 @@ button, input, select, textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--navy), rgba(212, 128, 146, 0.1));
+    background: linear-gradient(135deg, var(--navy), rgba(0, 128, 128, 0.1));
     color: var(--gold);
 }
 .guest-photo-placeholder i { width: 50px; height: 50px; opacity: 0.3; }
@@ -2234,11 +2234,11 @@ button, input, select, textarea {
 }
 .committee-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 35px rgba(212, 128, 146, 0.1);
+    box-shadow: 0 12px 35px rgba(0, 128, 128, 0.1);
 }
 .committee-lead-card {
     border-color: var(--border-color-hover);
-    background: rgba(212, 128, 146, 0.04);
+    background: rgba(0, 128, 128, 0.04);
 }
 .committee-photo-area {
     width: 100px;
@@ -2257,7 +2257,7 @@ button, input, select, textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--navy), rgba(212, 128, 146, 0.12));
+    background: linear-gradient(135deg, var(--navy), rgba(0, 128, 128, 0.12));
     color: var(--gold);
 }
 .committee-photo-placeholder i { width: 45px; height: 45px; opacity: 0.3; }
@@ -2310,7 +2310,7 @@ button, input, select, textarea {
 }
 .tier-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(212, 128, 146, 0.12);
+    box-shadow: 0 15px 40px rgba(0, 128, 128, 0.12);
 }
 .tier-badge {
     font-size: 0.65rem;
@@ -2354,8 +2354,8 @@ button, input, select, textarea {
 .tier-benefits li i { color: var(--gold); width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; }
 .tier-card .btn { width: 100%; justify-content: center; font-size: 0.8rem; padding: 11px 18px; }
 .tier-title {
-    border-color: rgba(212, 128, 146, 0.4);
-    background: rgba(212, 128, 146, 0.04);
+    border-color: rgba(0, 128, 128, 0.4);
+    background: rgba(0, 128, 128, 0.04);
 }
 .current-sponsors { text-align: center; }
 .current-sponsors-label {

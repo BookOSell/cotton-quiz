@@ -653,10 +653,8 @@ button, input, select, textarea {
    ABOUT THE EVENT
    ========================================================================== */
 .about-content-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 60px;
-    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .about-description .lead-text {

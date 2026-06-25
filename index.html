@@ -47,7 +47,9 @@
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#why-participate" class="nav-link">Benefits</a></li>
+                    <li><a href="#vc-message" class="nav-link">VC Message</a></li>
+                    <li><a href="#guests" class="nav-link">Guests</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
                     <li><a href="#timeline" class="nav-link">Timeline</a></li>
                     <li><a href="#committee" class="nav-link">Committee</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -55,7 +57,8 @@
             </nav>
 
             <div class="header-actions">
-                <a href="#register-cta" class="cta-nav-btn open-modal-btn" data-event="debate">Register Now</a>
+                <a href="assets/brochure-placeholder.pdf" download class="cta-nav-btn download-btn"><i data-lucide="download"></i> Brochure</a>
+                <a href="#register" class="cta-nav-btn register-nav-btn">Register Now</a>
                 <button class="mobile-nav-toggle" aria-label="Toggle Navigation">
                     <i data-lucide="menu"></i>
                 </button>
@@ -70,11 +73,14 @@
         </button>
         <ul class="mobile-nav-links">
             <li><a href="#about" class="mobile-link">About</a></li>
-            <li><a href="#why-participate" class="mobile-link">Benefits</a></li>
+            <li><a href="#vc-message" class="mobile-link">VC Message</a></li>
+            <li><a href="#guests" class="mobile-link">Guests</a></li>
+            <li><a href="#gallery" class="mobile-link">Gallery</a></li>
             <li><a href="#timeline" class="mobile-link">Timeline</a></li>
             <li><a href="#committee" class="mobile-link">Committee</a></li>
             <li><a href="#contact" class="mobile-link">Contact</a></li>
-            <li><a href="#register-cta" class="cta-mobile-btn open-modal-btn" data-event="debate">Register Now</a></li>
+            <li><a href="assets/brochure-placeholder.pdf" download class="mobile-link download-btn-mobile"><i data-lucide="download"></i> Brochure</a></li>
+            <li><a href="#register" class="cta-mobile-btn register-nav-btn">Register Now</a></li>
         </ul>
     </div>
 
@@ -145,10 +151,10 @@
 
                 <!-- CTAs -->
                 <div class="hero-ctas">
-                    <button class="btn btn-primary open-modal-btn" data-event="debate">
+                    <a href="#register" class="btn btn-primary">
                         <span>Register Your Team</span>
                         <i data-lucide="arrow-right"></i>
-                    </button>
+                    </a>
                     <a href="#about" class="btn btn-secondary">
                         <span>Learn More</span>
                     </a>
@@ -159,6 +165,71 @@
                 <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
                 <span class="scroll-text">Explore</span>
             </a>
+        </section>
+
+        <!-- ====================================================
+             1.5. INTERACTIVE DEBATE ARENA
+             ==================================================== -->
+        <section class="debate-arena-section section-padding" id="debate-arena">
+            <div class="section-container">
+                <div class="section-header reveal-reveal">
+                    <span class="section-subtitle">Interactive Debate Clash</span>
+                    <h2 class="section-title">The Debate Arena</h2>
+                    <div class="title-accent-line"></div>
+                    <p class="section-desc">Experience the power of perspectives. Click a side to support its arguments and witness the clash of logic in real-time.</p>
+                </div>
+                
+                <div class="arena-motion-card glass-card reveal-reveal">
+                    <span class="motion-tag">MOTION OF THE DAY</span>
+                    <h3 class="motion-title">"This House believes that artificial intelligence will democratise intellect rather than monopolise it."</h3>
+                </div>
+                
+                <div class="arena-clash-container reveal-reveal">
+                    <!-- Left Side: Proposition -->
+                    <div class="arena-side prop-side" id="prop-side-btn">
+                        <div class="side-glow"></div>
+                        <div class="side-content">
+                            <i data-lucide="thumbs-up" class="side-icon"></i>
+                            <h4>PROPOSITION</h4>
+                            <p>Democratisation &amp; Empowerment</p>
+                            <span class="vote-count" id="prop-votes">64%</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Center Clash Visualizer -->
+                    <div class="arena-visualizer">
+                        <div class="scale-of-justice">
+                            <div class="scale-bar" id="scale-bar"></div>
+                            <div class="scale-pivot"></div>
+                        </div>
+                        <div class="clash-sparks-container" id="clash-canvas-container">
+                            <canvas id="clash-canvas"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Opposition -->
+                    <div class="arena-side opp-side" id="opp-side-btn">
+                        <div class="side-glow"></div>
+                        <div class="side-content">
+                            <i data-lucide="thumbs-down" class="side-icon"></i>
+                            <h4>OPPOSITION</h4>
+                            <p>Monopolisation &amp; Disparity</p>
+                            <span class="vote-count" id="opp-votes">36%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Custom Argument Submitter -->
+                <div class="arena-actions reveal-reveal">
+                    <div class="argument-input-group">
+                        <input type="text" id="custom-argument" placeholder="Submit your key argument word (e.g. 'EQUITY', 'BIAS', 'ACCESS')...">
+                        <button class="btn btn-primary" id="submit-argument-btn">
+                            <span>Inject Argument</span>
+                            <i data-lucide="send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ====================================================
@@ -240,6 +311,116 @@
         </section>
 
         <!-- ====================================================
+             2.3. VICE CHANCELLOR'S MESSAGE
+             ==================================================== -->
+        <section class="vc-message-section section-padding" id="vc-message">
+            <div class="section-container">
+                <div class="vc-message-grid glass-card reveal-reveal">
+                    <div class="vc-photo-col">
+                        <div class="vc-image-wrapper">
+                            <div class="vc-img-placeholder">
+                                <i data-lucide="user" class="vc-placeholder-icon"></i>
+                                <span>Prof. Ramesh Chandra Deka</span>
+                            </div>
+                            <img src="assets/vc-photo.jpg" alt="Prof. Ramesh Chandra Deka" class="vc-real-img" onerror="this.style.display='none';">
+                            <div class="vc-badge">VICE CHANCELLOR</div>
+                        </div>
+                    </div>
+                    <div class="vc-text-col">
+                        <span class="vc-mini-title">Message from the Vice Chancellor</span>
+                        <h2 class="vc-heading">Welcoming the Nation's Finest Minds</h2>
+                        <div class="vc-accent-line"></div>
+                        <div class="vc-message-content">
+                            <p>"Cotton University, with its legacy spanning over a century, has always stood as a vanguard of free expression, intellectual curiosity, and rigorous debate. The Manik Chandra Barooah Memorial National Level Debate Competition is not just an event; it is a manifestation of our commitment to nurturing democratic values and intellectual leadership."</p>
+                            <p>"As we enter the 2026 edition, I invite student debaters from across India and South-East Asia to engage in constructive dialogue, challenge paradigms, and inspire positive change. May your arguments be sharp, your reasoning sound, and your spirit collegial."</p>
+                        </div>
+                        <div class="vc-signature">
+                            <div class="sig-placeholder">R. C. Deka</div>
+                            <span class="vc-name">Prof. Ramesh Chandra Deka</span>
+                            <span class="vc-title">Vice Chancellor, Cotton University</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================
+             2.6. DISTINGUISHED PREVIOUS GUESTS
+             ==================================================== -->
+        <section class="guests-section section-padding" id="guests">
+            <div class="section-container">
+                <div class="section-header reveal-reveal">
+                    <span class="section-subtitle">Legacy of Dignity</span>
+                    <h2 class="section-title">Distinguished Previous Guests</h2>
+                    <div class="title-accent-line"></div>
+                    <p class="section-desc">We have been honored by the presence of legendary statesmen, journalists, and leaders who have graced our stage and enriched our legacy.</p>
+                </div>
+                
+                <div class="guests-grid">
+                    <!-- Guest 1: Dr. Manmohan Singh -->
+                    <div class="guest-card glass-card reveal-reveal">
+                        <div class="guest-image-area">
+                            <div class="guest-photo-placeholder">
+                                <i data-lucide="user-circle"></i>
+                            </div>
+                            <img src="assets/guests/manmohan-singh.jpg" alt="Dr. Manmohan Singh" class="guest-real-img" onerror="this.style.display='none';">
+                        </div>
+                        <div class="guest-info">
+                            <h3>Dr. Manmohan Singh</h3>
+                            <span class="guest-role">Former Prime Minister of India</span>
+                            <p class="guest-desc">Renowned economist and former Prime Minister, who graced the MCB Debate as a chief guest, inspiring students with his wisdom on nation building.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Guest 2: Sitaram Yechury -->
+                    <div class="guest-card glass-card reveal-reveal">
+                        <div class="guest-image-area">
+                            <div class="guest-photo-placeholder">
+                                <i data-lucide="user-circle"></i>
+                            </div>
+                            <img src="assets/guests/sitaram-yechury.jpg" alt="Sitaram Yechury" class="guest-real-img" onerror="this.style.display='none';">
+                        </div>
+                        <div class="guest-info">
+                            <h3>Sitaram Yechury</h3>
+                            <span class="guest-role">Eminent Politician &amp; Intellectual</span>
+                            <p class="guest-desc">Distinguished parliamentarian and public intellectual, known for his stellar debating skills in parliamentary forums, who participated as an esteemed speaker.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Guest 3: Arnab Goswami -->
+                    <div class="guest-card glass-card reveal-reveal">
+                        <div class="guest-image-area">
+                            <div class="guest-photo-placeholder">
+                                <i data-lucide="user-circle"></i>
+                            </div>
+                            <img src="assets/guests/arnab-goswami.jpg" alt="Arnab Goswami" class="guest-real-img" onerror="this.style.display='none';">
+                        </div>
+                        <div class="guest-info">
+                            <h3>Arnab Goswami</h3>
+                            <span class="guest-role">Editor-in-Chief, Republic Media Network</span>
+                            <p class="guest-desc">Prominent news anchor, national media personality, and an alumnus of Cotton College who returned to judge and speak at the debate series.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Guest 4: Himanta Biswa Sarma -->
+                    <div class="guest-card glass-card reveal-reveal">
+                        <div class="guest-image-area">
+                            <div class="guest-photo-placeholder">
+                                <i data-lucide="user-circle"></i>
+                            </div>
+                            <img src="assets/guests/himanta-biswa.jpg" alt="Himanta Biswa Sarma" class="guest-real-img" onerror="this.style.display='none';">
+                        </div>
+                        <div class="guest-info">
+                            <h3>Himanta Biswa Sarma</h3>
+                            <span class="guest-role">Chief Minister of Assam</span>
+                            <p class="guest-desc">Hon'ble Chief Minister of Assam, political leader, and a distinguished Cotton College alumnus who has actively supported our intellectual events.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================
              3. EVENT OVERVIEW
              ==================================================== -->
         <section class="events-section section-padding" id="events">
@@ -308,71 +489,12 @@
                                     <i data-lucide="trophy"></i>
                                     <span>Attractive Prize Pool</span>
                                 </div>
+                                <a href="#register" class="btn btn-primary">
+                                    <span>Register Your Team</span>
+                                    <i data-lucide="users"></i>
+                                </a>
                             </div>
-
-                            <button class="btn btn-primary open-modal-btn" data-event="debate">
-                                <span>Register Your Team</span>
-                                <i data-lucide="users"></i>
-                            </button>
                         </div>
-                    </div>
-
-
-            </div>
-        </section>
-
-        <!-- ====================================================
-             4. WHY PARTICIPATE
-             ==================================================== -->
-        <section class="why-participate-section section-padding" id="why-participate">
-            <div class="section-container">
-                <div class="section-header reveal-reveal">
-                    <span class="section-subtitle">Your Stage Awaits</span>
-                    <h2 class="section-title">Why Participate?</h2>
-                    <div class="title-accent-line"></div>
-                </div>
-
-                <div class="why-grid">
-                    <div class="why-card glass-card reveal-reveal">
-                        <div class="why-card-num">01</div>
-                        <i data-lucide="brain" class="why-icon"></i>
-                        <h3>Sharpen Critical Thinking</h3>
-                        <p>Engage with complex real-world topics and build the analytical skills to dissect arguments and form compelling positions under pressure.</p>
-                    </div>
-
-                    <div class="why-card glass-card reveal-reveal">
-                        <div class="why-card-num">02</div>
-                        <i data-lucide="mic" class="why-icon"></i>
-                        <h3>Master Public Speaking</h3>
-                        <p>Gain invaluable stage time before hundreds of students, faculty, and distinguished guests — a setting few competitions can match.</p>
-                    </div>
-
-                    <div class="why-card glass-card reveal-reveal">
-                        <div class="why-card-num">03</div>
-                        <i data-lucide="network" class="why-icon"></i>
-                        <h3>National Networking</h3>
-                        <p>Connect with motivated student debaters from JNU, Delhi University, Pondicherry University, and international institutions.</p>
-                    </div>
-
-                    <div class="why-card glass-card reveal-reveal">
-                        <div class="why-card-num">04</div>
-                        <i data-lucide="file-badge" class="why-icon"></i>
-                        <h3>Certificates &amp; Recognition</h3>
-                        <p>Earn prestigious participation and merit certificates issued by one of North-East India's most reputed universities.</p>
-                    </div>
-
-                    <div class="why-card glass-card reveal-reveal">
-                        <div class="why-card-num">05</div>
-                        <i data-lucide="gift" class="why-icon"></i>
-                        <h3>Attractive Prize Pool</h3>
-                        <p>Compete for significant cash prizes, trophies, and special recognition for best speaker, best rebuttal, and more.</p>
-                    </div>
-
-                    <div class="why-card glass-card reveal-reveal">
-                        <div class="why-card-num">06</div>
-                        <i data-lucide="landmark" class="why-icon"></i>
-                        <h3>Historic Legacy</h3>
-                        <p>Become a part of a 46-year-old tradition that has shaped generations of leaders, thinkers, and public intellectuals.</p>
                     </div>
                 </div>
             </div>
@@ -406,34 +528,73 @@
                 <div class="prize-tiers-grid">
                     <div class="prize-tier glass-card reveal-reveal">
                         <div class="tier-icon-wrapper gold-medal">
-                            <i data-lucide="medal"></i>
+                            <i data-lucide="trophy"></i>
                         </div>
-                        <h4>Best Team</h4>
-                        <p>Cash Prize + Winner's Trophy + Certificates + Exclusive Goodies</p>
+                        <h4>Best Speaker</h4>
+                        <div class="tier-amount">₹30,000</div>
+                        <p>Winner's Trophy + Merit Certificate + Sponsor Goodies</p>
                     </div>
 
                     <div class="prize-tier glass-card reveal-reveal">
                         <div class="tier-icon-wrapper silver-medal">
-                            <i data-lucide="medal"></i>
+                            <i data-lucide="award"></i>
                         </div>
-                        <h4>Runners-Up</h4>
-                        <p>Cash Prize + Runners-Up Trophy + Certificates + Goodies</p>
+                        <h4>Second Best Speaker</h4>
+                        <div class="tier-amount">₹20,000</div>
+                        <p>Runners-Up Trophy + Merit Certificate + Sponsor Goodies</p>
                     </div>
 
                     <div class="prize-tier glass-card reveal-reveal">
                         <div class="tier-icon-wrapper bronze-medal">
-                            <i data-lucide="mic-2"></i>
+                            <i data-lucide="mic"></i>
                         </div>
-                        <h4>Best Speaker</h4>
-                        <p>Cash Prize + Individual Trophy + Certificates + Goodies</p>
+                        <h4>Best Interjector</h4>
+                        <div class="tier-amount">₹25,000</div>
+                        <p>Special Trophy + Merit Certificate + Sponsor Goodies</p>
                     </div>
                     
                     <div class="prize-tier glass-card reveal-reveal">
                         <div class="tier-icon-wrapper bronze-medal">
-                            <i data-lucide="award"></i>
+                            <i data-lucide="sparkles"></i>
                         </div>
-                        <h4>Best Rebuttal</h4>
-                        <p>Special Recognition + Cash Prize + Certificates</p>
+                        <h4>Second Best Interjector</h4>
+                        <div class="tier-amount">₹15,000</div>
+                        <p>Individual Trophy + Merit Certificate + Sponsor Goodies</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================
+             5.5. SPONSORS SECTION (INFINITE MARQUEE)
+             ==================================================== -->
+        <section class="sponsors-section section-padding" id="sponsors">
+            <div class="section-container">
+                <div class="section-header reveal-reveal">
+                    <span class="section-subtitle">Our Partners</span>
+                    <h2 class="section-title">Our Sponsors</h2>
+                    <div class="title-accent-line"></div>
+                    <p class="section-desc">Supported by organizations committed to encouraging intellectual discourse and youth leadership.</p>
+                </div>
+                
+                <div class="sponsors-marquee-wrapper reveal-reveal">
+                    <div class="marquee-container">
+                        <div class="marquee-content">
+                            <!-- Original set of logos -->
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">Assam Tribune</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">State Bank of India</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">ONGC</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">Oil India Limited</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">NRL</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">Tata Group</span></div>
+                            <!-- Duplicated set for seamless loop -->
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">Assam Tribune</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">State Bank of India</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">ONGC</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">Oil India Limited</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">NRL</span></div>
+                            <div class="sponsor-logo-box"><span class="sponsor-placeholder-logo">Tata Group</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -459,18 +620,9 @@
                         <div class="timeline-node reveal-reveal active">
                             <div class="timeline-marker"><span class="marker-dot"></span></div>
                             <div class="timeline-content glass-card">
-                                <span class="node-date">First Week of August 2026</span>
-                                <h3>Official Announcement &amp; Promotions</h3>
-                                <p>Official launch of MCB Debate Competition 2026. Social media campaigns, poster circulation, and outreach to universities across the nation begin.</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-node reveal-reveal">
-                            <div class="timeline-marker"><span class="marker-dot"></span></div>
-                            <div class="timeline-content glass-card">
-                                <span class="node-date">August 2026</span>
+                                <span class="node-date">1st August 2026</span>
                                 <h3>Registration Opens</h3>
-                                <p>Online registration portal opens for teams from universities across India and South-East Asia. Early registrations receive pre-event communication kits.</p>
+                                <p>Online registration portal is open to undergraduate and postgraduate teams nationwide. Prepare your team credentials.</p>
                             </div>
                         </div>
 
@@ -479,7 +631,16 @@
                             <div class="timeline-content glass-card">
                                 <span class="node-date">31st August 2026</span>
                                 <h3>Registration Closes</h3>
-                                <p>Deadline for all team registrations. Confirmation emails with participation details, debate motion, and venue guidelines will be sent to all registered teams.</p>
+                                <p>Deadline for team submissions. Registration forms and credentials must be submitted by midnight for screening.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node reveal-reveal">
+                            <div class="timeline-marker"><span class="marker-dot"></span></div>
+                            <div class="timeline-content glass-card">
+                                <span class="node-date">6th September 2026</span>
+                                <h3>Preliminary Round</h3>
+                                <p>Preliminary debating rounds. Registered teams compete in structured formats to qualify for the main showcase.</p>
                             </div>
                         </div>
 
@@ -487,17 +648,17 @@
                             <div class="timeline-marker"><span class="marker-dot"></span></div>
                             <div class="timeline-content glass-card">
                                 <span class="node-date">7th September 2026</span>
-                                <h3>MCB Debate Competition — Event Day</h3>
-                                <p>The grand day of debate at Kalaguru Bishnu Prasad Rabha Auditorium. Preliminary rounds, semi-finals, finals, and the award ceremony take place on this day.</p>
+                                <h3>Main Event</h3>
+                                <p>The grand debate finale at KBP Rabha Auditorium. Finalists debate on contemporary motions before our eminent panel.</p>
                             </div>
                         </div>
 
                         <div class="timeline-node reveal-reveal">
                             <div class="timeline-marker"><span class="marker-dot"></span></div>
                             <div class="timeline-content glass-card">
-                                <span class="node-date">Within 1 Week — Post Event</span>
-                                <h3>Post-Event Report &amp; Awards</h3>
-                                <p>Certificates dispatched to all participants. Post-event analytics report shared with sponsors. Digital highlights and media coverage published.</p>
+                                <span class="node-date">7th September 2026 (Evening)</span>
+                                <h3>Prize Distribution Ceremony</h3>
+                                <p>Celebrating excellence. Awarding of cash prizes, trophies, and certificates to winners, speakers, and interjectors.</p>
                             </div>
                         </div>
                     </div>
@@ -598,8 +759,22 @@
                     <p class="section-desc">Debate &amp; Symposium Section, Cotton University — a team of dedicated student organizers committed to academic excellence and flawless execution.</p>
                 </div>
 
-                <div class="committee-grid">
-                    <div class="committee-card glass-card reveal-reveal committee-lead-card">
+                <!-- Search and Filters -->
+                <div class="committee-filters-bar reveal-reveal">
+                    <div class="search-input-wrapper">
+                        <i data-lucide="search" class="search-bar-icon"></i>
+                        <input type="text" id="committee-search" placeholder="Search team members by name...">
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="leads">Leads</button>
+                        <button class="filter-btn" data-filter="logistics">Logistics</button>
+                        <button class="filter-btn" data-filter="media">Media &amp; Sponsor</button>
+                    </div>
+                </div>
+
+                <div class="committee-grid" id="committee-grid">
+                    <div class="committee-card glass-card reveal-reveal committee-lead-card" data-category="leads" data-name="dipom saha">
                         <div class="committee-photo-area">
                             <div class="committee-photo-placeholder">
                                 <i data-lucide="user-circle"></i>
@@ -613,7 +788,7 @@
                         </div>
                     </div>
 
-                    <div class="committee-card glass-card reveal-reveal">
+                    <div class="committee-card glass-card reveal-reveal" data-category="media" data-name="aniruddha rudra">
                         <div class="committee-photo-area">
                             <div class="committee-photo-placeholder">
                                 <i data-lucide="user-circle"></i>
@@ -627,7 +802,7 @@
                         </div>
                     </div>
 
-                    <div class="committee-card glass-card reveal-reveal">
+                    <div class="committee-card glass-card reveal-reveal" data-category="logistics" data-name="kritimoy kashyap">
                         <div class="committee-photo-area">
                             <div class="committee-photo-placeholder">
                                 <i data-lucide="user-circle"></i>
@@ -641,7 +816,7 @@
                         </div>
                     </div>
 
-                    <div class="committee-card glass-card reveal-reveal">
+                    <div class="committee-card glass-card reveal-reveal" data-category="media" data-name="vinayak saha">
                         <div class="committee-photo-area">
                             <div class="committee-photo-placeholder">
                                 <i data-lucide="user-circle"></i>
@@ -661,23 +836,89 @@
 
 
         <!-- ====================================================
-             10. REGISTRATION CTA
+             10. REGISTER YOUR TEAM
              ==================================================== -->
-        <section class="register-cta-section section-padding" id="register-cta">
-            <div class="cta-inner-glow"></div>
+        <section class="register-section section-padding" id="register">
             <div class="section-container">
-                <div class="cta-content-wrapper reveal-reveal">
-                    <span class="cta-mini-tag">REGISTRATIONS OPEN — DEADLINE: 31 AUGUST 2026</span>
-                    <h2 class="cta-headline">Ready to Take the Stage?</h2>
-                    <p class="cta-desc">
-                        Register your team today for the MCB Debate Competition 2026 — one of the most prestigious national-level debate platforms in India. Limited seats available. Secure your place in history.
-                    </p>
-                    <div class="cta-action-buttons">
-                        <button class="btn btn-primary open-modal-btn" data-event="debate">
-                            <span>Register Your Team</span>
-                            <i data-lucide="users"></i>
-                        </button>
-
+                <div class="section-header reveal-reveal">
+                    <span class="section-subtitle">Take the Stage</span>
+                    <h2 class="section-title">Register Your Team</h2>
+                    <div class="title-accent-line"></div>
+                    <p class="section-desc">Join the MCB Debate Competition 2026. Complete the form below to secure your team's slot in this prestigious intellectual event.</p>
+                </div>
+                
+                <div class="register-card-wrapper reveal-reveal">
+                    <div class="register-form-card glass-card">
+                        <!-- Success Message -->
+                        <div class="registration-success-overlay" id="reg-success-overlay">
+                            <div class="success-icon-container">
+                                <i data-lucide="check" class="success-check-icon"></i>
+                            </div>
+                            <h3>Registration Received!</h3>
+                            <p class="success-main-msg">Your team has been successfully registered for the MCB Debate Competition 2026.</p>
+                            <div class="success-details">
+                                <p><strong>Team Name:</strong> <span id="summary-team-name">N/A</span></p>
+                                <p><strong>Institution:</strong> <span id="summary-college">N/A</span></p>
+                                <p><strong>Team Leader:</strong> <span id="summary-leader-name">N/A</span></p>
+                                <p><strong>Confirmation sent to:</strong> <span id="summary-email">N/A</span></p>
+                            </div>
+                            <button class="btn btn-primary" id="reg-new-btn">Register Another Team</button>
+                        </div>
+                        
+                        <form id="inpage-register-form">
+                            <div class="form-grid">
+                                <!-- Left Column -->
+                                <div class="form-col">
+                                    <div class="input-group">
+                                        <label for="reg-team-name"><i data-lucide="users"></i> Team Name</label>
+                                        <input type="text" id="reg-team-name" placeholder="e.g. Cotton Logic Guild" required>
+                                    </div>
+                                    
+                                    <div class="input-group">
+                                        <label for="reg-inst"><i data-lucide="landmark"></i> Institution / Organization</label>
+                                        <input type="text" id="reg-inst" placeholder="e.g. Cotton University" required>
+                                    </div>
+                                    
+                                    <div class="input-group">
+                                        <label for="reg-leader"><i data-lucide="user"></i> Team Leader Name</label>
+                                        <input type="text" id="reg-leader" placeholder="Full name of Leader" required>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Column -->
+                                <div class="form-col">
+                                    <div class="input-group">
+                                        <label for="reg-contact"><i data-lucide="phone"></i> Contact Number</label>
+                                        <input type="tel" id="reg-contact" placeholder="10-digit mobile number" required>
+                                    </div>
+                                    
+                                    <div class="input-group">
+                                        <label for="reg-mail"><i data-lucide="mail"></i> Email Address</label>
+                                        <input type="email" id="reg-mail" placeholder="leader@university.edu" required>
+                                    </div>
+                                    
+                                    <div class="input-group">
+                                        <label for="reg-participants"><i data-lucide="user-plus"></i> Number of Participants</label>
+                                        <select id="reg-participants" required>
+                                            <option value="" disabled selected>Select number of members</option>
+                                            <option value="2">2 Members (Standard Team)</option>
+                                            <option value="3">3 Members (With Interjector)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-terms">
+                                <p>By submitting this form, you agree to abide by the rules and format of the MCB Debate Competition 2026. Confirmation is subject to eligibility verification.</p>
+                            </div>
+                            
+                            <div class="form-btn-wrapper">
+                                <button type="submit" class="btn btn-primary submit-btn">
+                                    <span>Submit Team Registration</span>
+                                    <i data-lucide="check-square"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -831,92 +1072,16 @@
     </footer>
 
     <!-- ====================================================
-         REGISTRATION MODAL OVERLAY
+         GALLERY LIGHTBOX OVERLAY
          ==================================================== -->
-    <div class="modal-overlay" id="registration-modal">
-        <div class="modal-card glass-card">
-            <button class="modal-close-btn" aria-label="Close Registration Form">
-                <i data-lucide="x"></i>
-            </button>
-
-            <div class="modal-header">
-                <h2>Team Registration</h2>
-                <p>MCB Debate Competition 2026 — Deadline: 31 August 2026</p>
-                <div class="header-decor-line"></div>
-            </div>
-
-            <!-- Success Screen -->
-            <div class="modal-success-screen" id="success-screen">
-                <div class="success-icon-wrapper">
-                    <i data-lucide="check" class="success-icon"></i>
-                </div>
-                <h3>Registration Received!</h3>
-                <p>Your team registration has been submitted. We will send a confirmation email with your team ID, event schedule, and participation guidelines shortly.</p>
-                <button class="btn btn-primary close-success-btn">Got it, thank you!</button>
-            </div>
-
-            <!-- Registration Form -->
-            <form id="registration-form" class="modal-form">
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="reg-name">Team Leader / Contact Name</label>
-                        <input type="text" id="reg-name" placeholder="Full Name" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="reg-email">Email Address</label>
-                        <input type="email" id="reg-email" placeholder="email@university.edu" required>
-                    </div>
-                </div>
-
-                <div class="form-row split-row">
-                    <div class="input-group">
-                        <label for="reg-college">University / Institution</label>
-                        <input type="text" id="reg-college" placeholder="e.g. Cotton University" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="reg-phone">Phone Number</label>
-                        <input type="tel" id="reg-phone" placeholder="+91 98765 43210" required>
-                    </div>
-                </div>
-
-                <div class="form-row split-row">
-                    <div class="input-group">
-                        <label for="reg-member2">Team Member 2 Name</label>
-                        <input type="text" id="reg-member2" placeholder="Full Name">
-                    </div>
-                    <div class="input-group">
-                        <label for="reg-member3">Team Member 3 Name (if any)</label>
-                        <input type="text" id="reg-member3" placeholder="Full Name">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="reg-state">State / Country</label>
-                        <input type="text" id="reg-state" placeholder="e.g. Assam, India" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="reg-notes">Any Additional Notes</label>
-                        <textarea id="reg-notes" rows="3" placeholder="Dietary requirements, accessibility needs, etc."></textarea>
-                    </div>
-                </div>
-
-                <div class="form-terms">
-                    <p>By registering, you agree to abide by the rules and format of the MCB Debate Competition 2026. Registrations are confirmed subject to verification and availability.</p>
-                </div>
-
-                <button type="submit" class="btn btn-primary submit-btn">
-                    <span>Submit Registration</span>
-                    <i data-lucide="check-square"></i>
-                </button>
-            </form>
+    <div id="gallery-lightbox" class="lightbox-overlay">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-container">
+            <img class="lightbox-content" id="lightbox-img" src="" alt="Debate Photo Lightbox">
+            <div id="lightbox-caption"></div>
         </div>
+        <a class="lightbox-prev">&#10094;</a>
+        <a class="lightbox-next">&#10095;</a>
     </div>
 
     <script src="js/main.js"></script>

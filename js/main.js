@@ -334,126 +334,383 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', updateTimelineProgress);
     updateTimelineProgress(); // run once on startup
 
-    /* ==========================================================================
-       REGISTRATION MODAL MANAGEMENT
-       ========================================================================== */
-    const modal = document.getElementById('registration-modal');
-    const modalClose = document.querySelector('.modal-close-btn');
-    const openBtns = document.querySelectorAll('.open-modal-btn');
-    
-    // Checkboxes & Collapsible
-    const checkQuiz = document.getElementById('check-quiz');
-    const checkWorkshop = document.getElementById('check-workshop');
-    const teamFields = document.getElementById('team-fields');
-    const eventSelectError = document.getElementById('event-select-error');
-    
-    // Registration Form / Screens
-    const regForm = document.getElementById('registration-form');
-    const successScreen = document.getElementById('success-screen');
-    const closeSuccessBtn = document.querySelector('.close-success-btn');
-
-    function openModal(eventType = 'both') {
-        if (!modal) return;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    /* ==========================================================
+       THE DEBATE CLASH ARENA INTERACTIVE ANIMATION
+       ========================================================== */
+    const clashCanvas = document.getElementById('clash-canvas');
+    if (clashCanvas) {
+        const cctx = clashCanvas.getContext('2d');
+        let bubbles = [];
+        let sparks = [];
+        let propVote = 64;
+        let oppVote = 36;
         
-        // Pre-fill checkboxes based on button trigger
-        if (checkQuiz && checkWorkshop) {
-            if (eventType === 'quiz') {
-                checkQuiz.checked = true;
-                checkWorkshop.checked = false;
-            } else if (eventType === 'workshop') {
-                checkQuiz.checked = false;
-                checkWorkshop.checked = true;
-            } else {
-                checkQuiz.checked = true;
-                checkWorkshop.checked = true;
+        const propVotesEl = document.getElementById('prop-votes');
+        const oppVotesEl = document.getElementById('opp-votes');
+        const scaleBar = document.getElementById('scale-bar');
+        
+        function resizeClashCanvas() {
+            const container = document.getElementById('clash-canvas-container');
+            if (container) {
+                clashCanvas.width = container.offsetWidth;
+                clashCanvas.height = container.offsetHeight;
             }
-            toggleTeamFields();
         }
-    }
-
-    function closeModal() {
-        if (!modal) return;
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
+        window.addEventListener('resize', resizeClashCanvas);
+        resizeClashCanvas();
         
-        // Reset forms and success views after close transitions finish
-        setTimeout(() => {
-            if (regForm) regForm.reset();
-            if (successScreen) successScreen.classList.remove('active');
-            if (eventSelectError) eventSelectError.innerText = '';
-            toggleTeamFields();
-        }, 400);
-    }
-
-    function toggleTeamFields() {
-        if (!checkQuiz || !teamFields) return;
-        if (checkQuiz.checked) {
-            teamFields.classList.add('show');
-        } else {
-            teamFields.classList.remove('show');
+        const propWords = ["LOGIC", "FACT", "EVIDENCE", "RHETORIC", "TRUTH", "REASON", "ACCESS", "DEMOCRACY"];
+        const oppWords = ["FALLACY", "BIAS", "MONOPOLY", "INEQUALITY", "CONTROL", "DISPARITY", "EXCLUSION", "DANGER"];
+        
+        class ArgumentBubble {
+            constructor(side, text) {
+                this.side = side;
+                this.text = text || (side === 'prop' ? propWords[Math.floor(Math.random() * propWords.length)] : oppWords[Math.floor(Math.random() * oppWords.length)]);
+                this.y = clashCanvas.height / 2 + (Math.random() * 40 - 20);
+                this.radius = Math.max(30, Math.min(60, this.text.length * 6 + 10));
+                this.speed = Math.random() * 1.5 + 2.5;
+                
+                if (side === 'prop') {
+                    this.x = -this.radius;
+                    this.targetX = clashCanvas.width / 2;
+                    this.color = 'rgba(0, 128, 128, '; // Teal
+                    this.vx = this.speed;
+                } else {
+                    this.x = clashCanvas.width + this.radius;
+                    this.targetX = clashCanvas.width / 2;
+                    this.color = 'rgba(212, 128, 146, '; // Rose Gold / Coral
+                    this.vx = -this.speed;
+                }
+            }
+            
+            update() {
+                this.x += this.vx;
+                if ((this.side === 'prop' && this.x >= this.targetX) || (this.side === 'opp' && this.x <= this.targetX)) {
+                    this.explode();
+                    return false; // remove
+                }
+                return true;
+            }
+            
+            draw() {
+                cctx.save();
+                cctx.beginPath();
+                cctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                cctx.fillStyle = this.color + '0.15)';
+                cctx.fill();
+                cctx.strokeStyle = this.color + '0.6)';
+                cctx.lineWidth = 2;
+                cctx.stroke();
+                
+                cctx.fillStyle = 'var(--ivory)';
+                cctx.font = 'bold 11px var(--font-body)';
+                cctx.textAlign = 'center';
+                cctx.textBaseline = 'middle';
+                cctx.fillText(this.text, this.x, this.y);
+                cctx.restore();
+            }
+            
+            explode() {
+                if (this.side === 'prop') {
+                    propVote = Math.min(92, propVote + 1);
+                    oppVote = 100 - propVote;
+                } else {
+                    oppVote = Math.min(92, oppVote + 1);
+                    propVote = 100 - propVote;
+                }
+                updateVotes();
+                
+                const count = 15;
+                for (let i = 0; i < count; i++) {
+                    sparks.push(new Spark(this.x, this.y, this.color));
+                }
+            }
         }
+        
+        class Spark {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 3 + 2;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                this.radius = Math.random() * 3 + 1;
+                this.opacity = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.opacity -= this.decay;
+                return this.opacity > 0;
+            }
+            
+            draw() {
+                cctx.save();
+                cctx.beginPath();
+                cctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                cctx.fillStyle = this.color + this.opacity + ')';
+                cctx.fill();
+                cctx.restore();
+            }
+        }
+        
+        function updateVotes() {
+            if (propVotesEl) propVotesEl.innerText = `${propVote}%`;
+            if (oppVotesEl) oppVotesEl.innerText = `${oppVote}%`;
+            if (scaleBar) {
+                const ratio = (propVote - 50) / 50; // -1 to 1
+                const angle = ratio * 18;
+                scaleBar.style.transform = `rotate(${angle}deg)`;
+            }
+        }
+        
+        function triggerArgument(side, word) {
+            bubbles.push(new ArgumentBubble(side, word));
+        }
+        
+        const propBtn = document.getElementById('prop-side-btn');
+        const oppBtn = document.getElementById('opp-side-btn');
+        
+        if (propBtn) {
+            propBtn.addEventListener('click', () => {
+                triggerArgument('prop');
+            });
+        }
+        if (oppBtn) {
+            oppBtn.addEventListener('click', () => {
+                triggerArgument('opp');
+            });
+        }
+        
+        const customArgInput = document.getElementById('custom-argument');
+        const submitArgBtn = document.getElementById('submit-argument-btn');
+        if (submitArgBtn && customArgInput) {
+            submitArgBtn.addEventListener('click', () => {
+                const text = customArgInput.value.trim().toUpperCase();
+                if (text) {
+                    const side = text.length % 2 === 0 ? 'prop' : 'opp';
+                    triggerArgument(side, text);
+                    customArgInput.value = '';
+                }
+            });
+            customArgInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    submitArgBtn.click();
+                }
+            });
+        }
+        
+        function animateClash() {
+            cctx.clearRect(0, 0, clashCanvas.width, clashCanvas.height);
+            
+            cctx.save();
+            cctx.strokeStyle = 'rgba(0, 128, 128, 0.08)';
+            cctx.lineWidth = 1;
+            cctx.setLineDash([5, 5]);
+            cctx.beginPath();
+            cctx.moveTo(clashCanvas.width / 2, 0);
+            cctx.lineTo(clashCanvas.width / 2, clashCanvas.height);
+            cctx.stroke();
+            cctx.restore();
+            
+            bubbles = bubbles.filter(bubble => {
+                const active = bubble.update();
+                if (active) bubble.draw();
+                return active;
+            });
+            
+            sparks = sparks.filter(spark => {
+                const active = spark.update();
+                if (active) spark.draw();
+                return active;
+            });
+            
+            requestAnimationFrame(animateClash);
+        }
+        
+        animateClash();
+        updateVotes();
     }
 
-    openBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    /* ==========================================================================
+       GALLERY LIGHTBOX INTERACTIVITY
+       ========================================================================== */
+    const lightbox = document.getElementById('gallery-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+    
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    let currentImageIndex = 0;
+    const galleryImages = [];
+    
+    galleryItems.forEach((item, index) => {
+        const img = item.querySelector('img');
+        const placeholder = item.querySelector('.gallery-img-placeholder span');
+        const title = item.querySelector('.gallery-overlay h4');
+        const desc = item.querySelector('.gallery-overlay p');
+        
+        const imgSrc = img ? img.getAttribute('src') : 'https://placehold.co/600x400/F0FAFA/008080?text=Debate';
+        const captionText = title ? `<strong>${title.innerText}</strong> - ${desc ? desc.innerText : ''}` : (placeholder ? placeholder.innerText : '');
+        
+        galleryImages.push({
+            src: imgSrc,
+            caption: captionText
+        });
+        
+        item.addEventListener('click', (e) => {
             e.preventDefault();
-            const eventType = btn.getAttribute('data-event') || 'both';
-            openModal(eventType);
+            openLightbox(index);
+        });
+    });
+    
+    function openLightbox(index) {
+        if (!lightbox) return;
+        currentImageIndex = index;
+        updateLightboxContent();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function updateLightboxContent() {
+        if (!lightboxImg || !lightboxCaption || galleryImages.length === 0) return;
+        lightboxImg.src = galleryImages[currentImageIndex].src;
+        lightboxCaption.innerHTML = galleryImages[currentImageIndex].caption;
+    }
+    
+    function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    function showNextImage() {
+        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+        updateLightboxContent();
+    }
+    
+    function showPrevImage() {
+        currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+        updateLightboxContent();
+    }
+    
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
+    
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-container')) {
+                closeLightbox();
+            }
+        });
+    }
+    
+    window.addEventListener('keydown', (e) => {
+        if (lightbox && lightbox.classList.contains('active')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNextImage();
+            if (e.key === 'ArrowLeft') showPrevImage();
+        }
+    });
+
+    /* ==========================================================================
+       ORGANISING COMMITTEE SEARCH & FILTER
+       ========================================================================== */
+    const committeeSearchInput = document.getElementById('committee-search');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const committeeCards = document.querySelectorAll('.committee-card');
+    
+    let searchFilterQuery = '';
+    let activeCategoryFilter = 'all';
+    
+    function filterCommittee() {
+        committeeCards.forEach(card => {
+            const name = (card.getAttribute('data-name') || '').toLowerCase();
+            const category = card.getAttribute('data-category') || '';
+            
+            const matchesSearch = name.includes(searchFilterQuery);
+            const matchesCategory = activeCategoryFilter === 'all' || category === activeCategoryFilter;
+            
+            if (matchesSearch && matchesCategory) {
+                card.style.display = '';
+                card.classList.add('active');
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    if (committeeSearchInput) {
+        committeeSearchInput.addEventListener('input', (e) => {
+            searchFilterQuery = e.target.value.toLowerCase().trim();
+            filterCommittee();
+        });
+    }
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeCategoryFilter = btn.getAttribute('data-filter');
+            filterCommittee();
         });
     });
 
-    if (modalClose) modalClose.addEventListener('click', closeModal);
-    if (closeSuccessBtn) closeSuccessBtn.addEventListener('click', closeModal);
+    /* ==========================================================================
+       IN-PAGE REGISTRATION FORM
+       ========================================================================== */
+    const inpageRegForm = document.getElementById('inpage-register-form');
+    const regSuccessOverlay = document.getElementById('reg-success-overlay');
+    const regNewBtn = document.getElementById('reg-new-btn');
     
-    // Click outside modal content to close
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-    }
-
-    // Toggle teammates block dynamically on checkbox edits
-    if (checkQuiz) {
-        checkQuiz.addEventListener('change', toggleTeamFields);
-    }
-
-    // Modal Form Submission Handler
-    if (regForm) {
-        regForm.addEventListener('submit', (e) => {
+    if (inpageRegForm && regSuccessOverlay) {
+        inpageRegForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Check if at least one checkbox is checked
-            const quizChecked = checkQuiz ? checkQuiz.checked : false;
-            const workshopChecked = checkWorkshop ? checkWorkshop.checked : false;
+            const teamNameVal = document.getElementById('reg-team-name').value.trim();
+            const instVal = document.getElementById('reg-inst').value.trim();
+            const leaderVal = document.getElementById('reg-leader').value.trim();
+            const contactVal = document.getElementById('reg-contact').value.trim();
+            const mailVal = document.getElementById('reg-mail').value.trim();
             
-            if (!quizChecked && !workshopChecked) {
-                if (eventSelectError) {
-                    eventSelectError.innerText = 'Please select at least one event (Quiz or Workshop) to register.';
-                }
+            const phoneDigits = contactVal.replace(/[^0-9]/g, '');
+            if (phoneDigits.length < 10) {
+                alert('Please enter a valid mobile number with at least 10 digits.');
                 return;
-            } else {
-                if (eventSelectError) eventSelectError.innerText = '';
             }
-
-            // Animate submission trigger (mock database send)
-            const submitBtn = regForm.querySelector('.submit-btn');
-            const originalHtml = submitBtn.innerHTML;
+            
+            document.getElementById('summary-team-name').innerText = teamNameVal;
+            document.getElementById('summary-college').innerText = instVal;
+            document.getElementById('summary-leader-name').innerText = leaderVal;
+            document.getElementById('summary-email').innerText = mailVal;
+            
+            const submitBtn = inpageRegForm.querySelector('.submit-btn');
+            const originalBtnHtml = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span>Processing...</span>';
-
+            
             setTimeout(() => {
-                // Restore button and switch screens
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = originalHtml;
-                
-                if (successScreen) {
-                    successScreen.classList.add('active');
+                submitBtn.innerHTML = originalBtnHtml;
+                regSuccessOverlay.classList.add('active');
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
                 }
             }, 1200);
+        });
+    }
+    
+    if (regNewBtn && regSuccessOverlay && inpageRegForm) {
+        regNewBtn.addEventListener('click', () => {
+            inpageRegForm.reset();
+            regSuccessOverlay.classList.remove('active');
         });
     }
 
@@ -481,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 contactStatus.innerText = 'Thank you! Your message has been sent successfully. We will get back to you shortly.';
                 contactStatus.classList.add('success');
+                contactStatus.style.display = 'block';
                 contactForm.reset();
             }, 1000);
         });

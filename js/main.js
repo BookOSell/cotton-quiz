@@ -522,23 +522,23 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalHtml = submitBtn.innerHTML;
-            
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>Sending Message...</span>';
-            contactStatus.className = 'form-status-msg';
-            contactStatus.style.display = 'none';
+            const name    = document.getElementById('contact-name').value.trim();
+            const email   = document.getElementById('contact-email').value.trim();
+            const subject = document.getElementById('contact-subject').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
 
-            setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalHtml;
-                
-                contactStatus.innerText = 'Thank you! Your message has been sent successfully. We will get back to you shortly.';
-                contactStatus.classList.add('success');
-                contactStatus.style.display = 'block';
-                contactForm.reset();
-            }, 1000);
+            const mailtoSubject = encodeURIComponent(`[MCB Debate 2026] ${subject}`);
+            const mailtoBody    = encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+            );
+            const mailtoHref = `mailto:mcbnationaldebate2026@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+            window.location.href = mailtoHref;
+
+            contactStatus.innerText = 'Opening your email client to send the message...';
+            contactStatus.className = 'form-status-msg success';
+            contactStatus.style.display = 'block';
+            contactForm.reset();
         });
     }
 });

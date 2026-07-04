@@ -240,6 +240,9 @@ button, input, select, textarea {
     border: none;
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 .cta-nav-btn:hover {
     transform: translateY(-2px);
@@ -386,6 +389,28 @@ button, input, select, textarea {
 .glass-card:hover {
     border-color: var(--border-color-hover);
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
+}
+
+/* ==========================================================================
+   HERO MCB OFFICIAL LOGO
+   ========================================================================== */
+.hero-mcb-logo {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-bottom: 24px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 8px 32px rgba(0, 128, 128, 0.15), 0 0 0 4px rgba(0, 128, 128, 0.1);
+    animation: logo-float 6s ease-in-out infinite;
+}
+@keyframes logo-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+@media (max-width: 768px) {
+    .hero-mcb-logo { width: 160px; height: 160px; margin-bottom: 18px; }
 }
 
 /* ==========================================================================

@@ -47,7 +47,6 @@
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#vc-message" class="nav-link">VC Message</a></li>
                     <li><a href="#guests" class="nav-link">Guests</a></li>
                     <li><a href="#gallery" class="nav-link">Gallery</a></li>
                     <li><a href="#timeline" class="nav-link">Timeline</a></li>
@@ -57,8 +56,8 @@
             </nav>
 
             <div class="header-actions">
-                <a href="assets/brochure-placeholder.pdf" download class="cta-nav-btn download-btn"><i data-lucide="download"></i> Brochure</a>
                 <a href="#register" class="cta-nav-btn register-nav-btn">Register Now</a>
+                <a href="assets/brochure-placeholder.pdf" download class="cta-nav-btn download-btn"><i data-lucide="download"></i> Brochure</a>
                 <button class="mobile-nav-toggle" aria-label="Toggle Navigation">
                     <i data-lucide="menu"></i>
                 </button>
@@ -73,14 +72,13 @@
         </button>
         <ul class="mobile-nav-links">
             <li><a href="#about" class="mobile-link">About</a></li>
-            <li><a href="#vc-message" class="mobile-link">VC Message</a></li>
             <li><a href="#guests" class="mobile-link">Guests</a></li>
             <li><a href="#gallery" class="mobile-link">Gallery</a></li>
             <li><a href="#timeline" class="mobile-link">Timeline</a></li>
             <li><a href="#committee" class="mobile-link">Committee</a></li>
             <li><a href="#contact" class="mobile-link">Contact</a></li>
-            <li><a href="assets/brochure-placeholder.pdf" download class="mobile-link download-btn-mobile"><i data-lucide="download"></i> Brochure</a></li>
             <li><a href="#register" class="cta-mobile-btn register-nav-btn">Register Now</a></li>
+            <li><a href="assets/brochure-placeholder.pdf" download class="mobile-link download-btn-mobile"><i data-lucide="download"></i> Download Brochure</a></li>
         </ul>
     </div>
 
@@ -97,6 +95,9 @@
                     <span class="badge-dot"></span>
                     <span class="badge-text">Argue. Inspire. Lead.</span>
                 </div>
+
+                <!-- MCB Official Logo -->
+                <img src="assets/mcb-logo.jpg" alt="MCB Debate 2026 Official Logo" class="hero-mcb-logo" loading="lazy">
 
                 <h1 class="hero-title">
                     MCB Debate<br>
@@ -210,39 +211,6 @@
             </div>
         </section>
 
-        <!-- ====================================================
-             2.3. VICE CHANCELLOR'S MESSAGE
-             ==================================================== -->
-        <section class="vc-message-section section-padding" id="vc-message">
-            <div class="section-container">
-                <div class="vc-message-grid glass-card reveal-reveal">
-                    <div class="vc-photo-col">
-                        <div class="vc-image-wrapper">
-                            <div class="vc-img-placeholder">
-                                <i data-lucide="user" class="vc-placeholder-icon"></i>
-                                <span>Prof. Ramesh Chandra Deka</span>
-                            </div>
-                            <img src="assets/vc-photo.jpg" alt="Prof. Ramesh Chandra Deka" class="vc-real-img" onerror="this.style.display='none';" loading="lazy">
-                            <div class="vc-badge">VICE CHANCELLOR</div>
-                        </div>
-                    </div>
-                    <div class="vc-text-col">
-                        <span class="vc-mini-title">Message from the Vice Chancellor</span>
-                        <h2 class="vc-heading">Welcoming the Nation's Finest Minds</h2>
-                        <div class="vc-accent-line"></div>
-                        <div class="vc-message-content">
-                            <p>"Cotton University, with its legacy spanning over a century, has always stood as a vanguard of free expression, intellectual curiosity, and rigorous debate. The Manik Chandra Barooah Memorial National Level Debate Competition is not just an event; it is a manifestation of our commitment to nurturing democratic values and intellectual leadership."</p>
-                            <p>"As we enter the 2026 edition, I invite student debaters from across India and South-East Asia to engage in constructive dialogue, challenge paradigms, and inspire positive change. May your arguments be sharp, your reasoning sound, and your spirit collegial."</p>
-                        </div>
-                        <div class="vc-signature">
-                            <div class="sig-placeholder">R. C. Deka</div>
-                            <span class="vc-name">Prof. Ramesh Chandra Deka</span>
-                            <span class="vc-title">Vice Chancellor, Cotton University</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- ====================================================
              2.6. DISTINGUISHED PREVIOUS GUESTS
@@ -416,12 +384,8 @@
                     <div class="prize-glow-bg"></div>
                     <i data-lucide="trophy" class="mega-trophy-icon"></i>
                     <div class="prize-hero-content">
-                        <h3>Total Prize Pool Worth</h3>
-                        <div class="prize-amount">
-                            <span class="currency">₹</span>
-                            <span class="amount">1,00,000</span>
-                            <span class="plus-goodies">+ Goodies</span>
-                        </div>
+                        <h3>Prizes &amp; Goodies Await</h3>
+                        <p style="font-size:1.1rem;color:var(--text-muted);margin-top:12px;">Compete for prestigious trophies, merit certificates, and exciting sponsor goodies across five coveted categories.</p>
                     </div>
                 </div>
 
@@ -430,8 +394,7 @@
                         <div class="tier-icon-wrapper gold-medal">
                             <i data-lucide="trophy"></i>
                         </div>
-                        <h4>Best Speaker</h4>
-                        <div class="tier-amount">₹30,000</div>
+                        <h4>Best Debater</h4>
                         <p>Winner's Trophy + Merit Certificate + Sponsor Goodies</p>
                     </div>
 
@@ -439,27 +402,32 @@
                         <div class="tier-icon-wrapper silver-medal">
                             <i data-lucide="award"></i>
                         </div>
-                        <h4>Second Best Speaker</h4>
-                        <div class="tier-amount">₹20,000</div>
-                        <p>Runners-Up Trophy + Merit Certificate + Sponsor Goodies</p>
+                        <h4>Second Best Debater</h4>
+                        <p>Runner-Up Trophy + Merit Certificate + Sponsor Goodies</p>
                     </div>
 
                     <div class="prize-tier glass-card reveal-reveal">
+                        <div class="tier-icon-wrapper gold-medal">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <h4>Best Team</h4>
+                        <p>Champion Trophy + Merit Certificates + Sponsor Goodies</p>
+                    </div>
+
+                    <div class="prize-tier glass-card reveal-reveal">
+                        <div class="tier-icon-wrapper silver-medal">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <h4>Second Best Team</h4>
+                        <p>Runner-Up Trophy + Merit Certificates + Sponsor Goodies</p>
+                    </div>
+
+                    <div class="prize-tier glass-card reveal-reveal" style="grid-column: 1 / -1; max-width: 320px; margin: 0 auto;">
                         <div class="tier-icon-wrapper bronze-medal">
                             <i data-lucide="mic"></i>
                         </div>
                         <h4>Best Interjector</h4>
-                        <div class="tier-amount">₹25,000</div>
                         <p>Special Trophy + Merit Certificate + Sponsor Goodies</p>
-                    </div>
-                    
-                    <div class="prize-tier glass-card reveal-reveal">
-                        <div class="tier-icon-wrapper bronze-medal">
-                            <i data-lucide="sparkles"></i>
-                        </div>
-                        <h4>Second Best Interjector</h4>
-                        <div class="tier-amount">₹15,000</div>
-                        <p>Individual Trophy + Merit Certificate + Sponsor Goodies</p>
                     </div>
                 </div>
             </div>
@@ -674,61 +642,85 @@
                 </div>
 
                 <div class="committee-grid" id="committee-grid">
-                    <div class="committee-card glass-card reveal-reveal committee-lead-card" data-category="leads" data-name="dipom saha">
+
+                    <!-- Patron -->
+                    <div class="committee-card glass-card reveal-reveal committee-lead-card" data-category="leads" data-name="ramesh chandra deka">
                         <div class="committee-photo-area">
-                            <div class="committee-photo-placeholder">
-                                <i data-lucide="user-circle"></i>
-                            </div>
+                            <div class="committee-photo-placeholder"><i data-lucide="user-circle"></i></div>
+                            <img src="assets/committee/ramesh-deka.jpg" alt="Prof. Ramesh Chandra Deka" onerror="this.style.display='none';" loading="lazy">
+                        </div>
+                        <div class="committee-info">
+                            <h3>Prof. Ramesh Chandra Deka</h3>
+                            <span class="committee-role">Patron</span>
+                            <p class="committee-desc">Hon'ble Vice Chancellor, Cotton University — the guiding force behind the MCB Debate tradition.</p>
+                        </div>
+                    </div>
+
+                    <!-- Convenor -->
+                    <div class="committee-card glass-card reveal-reveal" data-category="leads" data-name="akunthita borthakur">
+                        <div class="committee-photo-area">
+                            <div class="committee-photo-placeholder"><i data-lucide="user-circle"></i></div>
+                            <img src="assets/committee/akunthita-borthakur.jpg" alt="Dr. Akunthita Borthakur" onerror="this.style.display='none';" loading="lazy">
+                        </div>
+                        <div class="committee-info">
+                            <h3>Dr. Akunthita Borthakur</h3>
+                            <span class="committee-role">Convenor</span>
+                            <p class="committee-desc">Faculty In-Charge, providing academic leadership and oversight for the MCB Debate Competition.</p>
+                        </div>
+                    </div>
+
+                    <!-- Co-Convenor -->
+                    <div class="committee-card glass-card reveal-reveal" data-category="leads" data-name="abu mohd pharhad hussain">
+                        <div class="committee-photo-area">
+                            <div class="committee-photo-placeholder"><i data-lucide="user-circle"></i></div>
+                            <img src="assets/committee/pharhad-hussain.jpg" alt="Dr. Abu Mohd Pharhad Hussain" onerror="this.style.display='none';" loading="lazy">
+                        </div>
+                        <div class="committee-info">
+                            <h3>Dr. Abu Mohd Pharhad Hussain</h3>
+                            <span class="committee-role">Co-Convenor</span>
+                            <p class="committee-desc">Faculty In-Charge, co-directing the planning and execution of the national-level debate competition.</p>
+                        </div>
+                    </div>
+
+                    <!-- Organising Secretary -->
+                    <div class="committee-card glass-card reveal-reveal" data-category="leads" data-name="dipom saha">
+                        <div class="committee-photo-area">
+                            <div class="committee-photo-placeholder"><i data-lucide="user-circle"></i></div>
                             <img src="assets/committee/dipom-saha.jpg" alt="Dipom Saha" onerror="this.style.display='none';" loading="lazy">
                         </div>
                         <div class="committee-info">
                             <h3>Dipom Saha</h3>
                             <span class="committee-role">Organising Secretary</span>
-                            <p class="committee-desc">Leading the Debate &amp; Symposium Section with a legacy of impactful academic events across the region.</p>
+                            <p class="committee-desc">Secretary, Debate &amp; Symposium Section, CUSU — leading student operations for the MCB Debate.</p>
                         </div>
                     </div>
 
+                    <!-- Coordinator & Sponsorship -->
                     <div class="committee-card glass-card reveal-reveal" data-category="media" data-name="aniruddha rudra">
                         <div class="committee-photo-area">
-                            <div class="committee-photo-placeholder">
-                                <i data-lucide="user-circle"></i>
-                            </div>
+                            <div class="committee-photo-placeholder"><i data-lucide="user-circle"></i></div>
                             <img src="assets/committee/aniruddha-rudra.jpg" alt="Aniruddha Rudra" onerror="this.style.display='none';" loading="lazy">
                         </div>
                         <div class="committee-info">
                             <h3>Aniruddha Rudra</h3>
-                            <span class="committee-role">Sponsorship Head</span>
-                            <p class="committee-desc">Spearheading sponsor partnerships and resource mobilisation for the competition.</p>
+                            <span class="committee-role">Coordinator &amp; Sponsorship</span>
+                            <p class="committee-desc">Overseeing event coordination and driving sponsorship partnerships for the competition.</p>
                         </div>
                     </div>
 
+                    <!-- Institutional Relations, Logistics & Student Relations -->
                     <div class="committee-card glass-card reveal-reveal" data-category="logistics" data-name="kritimoy kashyap">
                         <div class="committee-photo-area">
-                            <div class="committee-photo-placeholder">
-                                <i data-lucide="user-circle"></i>
-                            </div>
+                            <div class="committee-photo-placeholder"><i data-lucide="user-circle"></i></div>
                             <img src="assets/committee/kritimoy-kashyap.jpg" alt="Kritimoy Kashyap" onerror="this.style.display='none';" loading="lazy">
                         </div>
                         <div class="committee-info">
                             <h3>Kritimoy Kashyap</h3>
-                            <span class="committee-role">Logistics Head</span>
-                            <p class="committee-desc">Overseeing all operational logistics, venue management, and participant coordination.</p>
+                            <span class="committee-role">Institutional Relations, Logistics &amp; Student Relations</span>
+                            <p class="committee-desc">Managing participant coordination, institutional outreach, and all on-ground logistics.</p>
                         </div>
                     </div>
 
-                    <div class="committee-card glass-card reveal-reveal" data-category="media" data-name="vinayak saha">
-                        <div class="committee-photo-area">
-                            <div class="committee-photo-placeholder">
-                                <i data-lucide="user-circle"></i>
-                            </div>
-                            <img src="assets/committee/vinayak-saha.jpg" alt="Vinayak Saha" onerror="this.style.display='none';" loading="lazy">
-                        </div>
-                        <div class="committee-info">
-                            <h3>Vinayak Saha</h3>
-                            <span class="committee-role">Design &amp; Media</span>
-                            <p class="committee-desc">Leading creative direction, social media campaigns, and all visual communication for the event.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -853,7 +845,7 @@
                                 <div class="detail-icon"><i data-lucide="mail"></i></div>
                                 <div class="detail-text">
                                     <strong>Email</strong>
-                                    <span><a href="mailto:mcbdebate@cottonuniversity.ac.in">mcbdebate@cottonuniversity.ac.in</a></span>
+                                    <span><a href="mailto:mcbnationaldebate2026@gmail.com">mcbnationaldebate2026@gmail.com</a></span>
                                 </div>
                             </div>
 

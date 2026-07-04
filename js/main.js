@@ -462,57 +462,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       IN-PAGE REGISTRATION FORM
-       ========================================================================== */
-    const inpageRegForm = document.getElementById('inpage-register-form');
-    const regSuccessOverlay = document.getElementById('reg-success-overlay');
-    const regNewBtn = document.getElementById('reg-new-btn');
-    
-    if (inpageRegForm && regSuccessOverlay) {
-        inpageRegForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const teamNameVal = document.getElementById('reg-team-name').value.trim();
-            const instVal = document.getElementById('reg-inst').value.trim();
-            const leaderVal = document.getElementById('reg-leader').value.trim();
-            const contactVal = document.getElementById('reg-contact').value.trim();
-            const mailVal = document.getElementById('reg-mail').value.trim();
-            
-            const phoneDigits = contactVal.replace(/[^0-9]/g, '');
-            if (phoneDigits.length < 10) {
-                alert('Please enter a valid mobile number with at least 10 digits.');
-                return;
-            }
-            
-            document.getElementById('summary-team-name').innerText = teamNameVal;
-            document.getElementById('summary-college').innerText = instVal;
-            document.getElementById('summary-leader-name').innerText = leaderVal;
-            document.getElementById('summary-email').innerText = mailVal;
-            
-            const submitBtn = inpageRegForm.querySelector('.submit-btn');
-            const originalBtnHtml = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>Processing...</span>';
-            
-            setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnHtml;
-                regSuccessOverlay.classList.add('active');
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
-            }, 1200);
-        });
-    }
-    
-    if (regNewBtn && regSuccessOverlay && inpageRegForm) {
-        regNewBtn.addEventListener('click', () => {
-            inpageRegForm.reset();
-            regSuccessOverlay.classList.remove('active');
-        });
-    }
-
-    /* ==========================================================================
        CONTACT FORM MESSAGE MOCK SUBMIT
        ========================================================================== */
     const contactForm = document.getElementById('contact-form');
